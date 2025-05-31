@@ -1,6 +1,9 @@
 <?php require "../includes/header.php"; ?>
 <?php require "../config/config.php"; ?>
 <?php 
+    if (isset($_SESSION['username'])) {
+        header("Location: ".APPURL."");
+    }
     if (isset($_POST['submit'])) {
 
         if (empty($_POST['email']) || empty($_POST['password'])) {
@@ -16,7 +19,12 @@
 
             if($login->rowCount() > 0) {
                 if(password_verify($password, $fetch['mypassword'])) {
-                    echo "<script>alert('Login successful');</script>";
+                   // echo "<script>alert('Login successful');</script>";
+                   $_SESSION['username'] = $fetch['username'];
+                   $_SESSION['user_id'] = $fetch['id'];
+
+                   header("Location: ".APPURL."");
+                
                 } else {
                     echo "<script>alert('Password or email are wrong');</script>";
                 }
@@ -43,7 +51,7 @@
                             <input type="password" name="password" class="form-control" id="inputPassword">
                         </div>
                     </div>
-                    <button class="w-100 btn btn-lg btn-primary mt-4" name="submit" type="submit">login</button>
+                    <button class="w-100 btn btn-lg btn-primary mt-4" name="submit" type="submit">Login</button>
 
                 </form>
             </div>
