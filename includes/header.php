@@ -31,7 +31,7 @@
         </form> -->
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-            <a class="nav-link active  text-white" aria-current="page" href="<?php echo APPURL;?>">Home</a>
+            <a class="nav-link active  text-white" aria-current="page" href="<?php echo APPURL; ?>">Home</a>
             </li>
             <li class="nav-item ">
             <a class="nav-link  text-white" href="<?php echo APPURL;?>/contact.php">Contact</a>
