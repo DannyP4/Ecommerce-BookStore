@@ -1,18 +1,23 @@
 <?php require "../includes/header.php"; ?>  
 <?php require "../config/config.php"; ?>  
 <?php 
-    $product = $conn->query("SELECT * FROM cart WHERE user_id = '$_SESSION[user_id]'");
-    $product->execute();
 
-    $allProducts = $product->fetchAll(PDO::FETCH_OBJ);
+  if (!isset($_SESSION['username'])) {
+    header("Location: ".APPURL."");
+  }
 
-    if (isset($_POST['submit'])) {
-        $price = $_POST['price'];
+  $product = $conn->query("SELECT * FROM cart WHERE user_id = '$_SESSION[user_id]'");
+  $product->execute();
+
+  $allProducts = $product->fetchAll(PDO::FETCH_OBJ);
+
+  if (isset($_POST['submit'])) {
+    $price = $_POST['price'];
         
-        $_SESSION['price'] = $price;
+    $_SESSION['price'] = $price;
 
-        header("Location: checkout.php");
-    }
+    header("Location: checkout.php");
+  }
 
 ?>
 
@@ -84,7 +89,7 @@
                       <input class="inp_price" name="price" type="hidden">
                     </div>
 
-                    <button type="submit" name="submit" class="btn btn-dark btn-block btn-lg"
+                    <button type="submit" name="submit" class="btn btn-dark btn-block btn-lg checkout"
                       data-mdb-ripple-color="dark">Checkout</button>
                     </form>
 
@@ -180,6 +185,13 @@
 
                   $(".full_price").html(sum + "$");
                   $(".inp_price").val(sum);
+
+                  if ($(".inp_price").val() > 0) {
+                    $(".checkout").show();
+                  } else {
+                    $(".checkout").hide();
+                  }
+
         }, 4000); // 4s
       } 
       

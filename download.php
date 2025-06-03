@@ -20,4 +20,9 @@
     header('Content-disposition: attachment; filename='.$zipname);
     //header('Content-Length: ' . filesize($zipname));
     readfile($zipname);
+
+    $select = $conn->query("DELETE FROM cart WHERE user_id = '$_SESSION[user_id]'");
+    $select->execute();
+
+    header("location: index.php");
 ?>
