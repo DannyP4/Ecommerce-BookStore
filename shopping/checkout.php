@@ -2,7 +2,6 @@
 <?php require "../config/config.php"; ?>  
 
       <!-- Heading -->
-      <?php echo $_SESSION['price']; ?>
       <h2 class="my-5 h2 text-center">Checkout</h2>
 
       <!--Grid row-->
@@ -70,7 +69,7 @@
                 data-key="pk_test_51M94h5Hp65tXrQ3PiYbpcRZmY8t09IMUrVwgrDjGlOXUJiGpK09MhKEAjzqZ2rBn13M46Hquv1fPneDRRMesw9AW00ws2aTeJC"
                 
                 data-currency="usd"
-                data-label="pay now"
+                data-label="Pay Now!"
               >  
               </script>
 
