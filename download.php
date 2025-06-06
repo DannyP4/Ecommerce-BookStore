@@ -3,6 +3,11 @@
 
 <?php
 
+    if(!isset($_SERVER['HTTP_REFERER'])) {
+        header("Location: index.php");
+        exit;
+    }
+
     $select = $conn->query("SELECT * FROM cart WHERE user_id = '$_SESSION[user_id]'");
     $select->execute();
     $allProduct = $select->fetchAll(PDO::FETCH_OBJ);
@@ -12,7 +17,7 @@
     $zip = new ZipArchive;
     $zip->open($zipname, ZipArchive::CREATE);
     foreach ($allProduct as $product) {
-        $zip->addFile("books/" . $product->pro_file);
+        $zip->addFile("admin-panel/products-admins/books/" . $product->pro_file);
     }
     $zip->close();
 

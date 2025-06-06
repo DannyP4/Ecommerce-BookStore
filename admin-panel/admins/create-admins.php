@@ -2,7 +2,7 @@
 <?php require "../../config/config.php"; ?> 
 <?php 
     if (!isset($_SESSION['adminname'])) {
-        header("Location: ".ADMINURL."");
+        header("Location: ".ADMINURL."/admins/login-admins.php");
     }
     
     if (isset($_POST['submit'])) {

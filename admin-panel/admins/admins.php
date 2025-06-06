@@ -2,8 +2,8 @@
 <?php require "../../config/config.php"; ?> 
 
 <?php 
-    if(!isset($_SESSION['adminname'])) {
-      header("location: ".ADMINURL."/admins/login-admins.php");
+    if (!isset($_SESSION['adminname'])) {
+          header("Location: ".ADMINURL."/admins/login-admins.php");
     }
 
     $select = $conn->query("SELECT * FROM admins");
