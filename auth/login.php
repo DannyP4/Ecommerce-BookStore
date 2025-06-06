@@ -22,6 +22,7 @@
                    // echo "<script>alert('Login successful');</script>";
                    $_SESSION['username'] = $fetch['username'];
                    $_SESSION['user_id'] = $fetch['id'];
+                   $_SESSION['email'] = $fetch['email'];
 
                    header("Location: ".APPURL."");
                 
