@@ -1,5 +1,6 @@
 <?php require "includes/header.php"; ?>  
 <?php require "config/config.php"; ?>  
+<?php require_once __DIR__ . '/vendor/autoload.php'; ?>
 
 <?php
 
@@ -19,6 +20,7 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
+    use Dotenv\Dotenv;
 
     require 'src/Exception.php';
     require 'src/PHPMailer.php';
@@ -27,21 +29,25 @@
     //Create an instance; passing `true` enables exceptions
     $mail = new PHPMailer(true);
 
+    // Load .env file
+    $dotenv = Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+
     try {
         //Server settings
         $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
+        $mail->Host       = $_ENV['MAIL_HOST'];                      //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'pdlong1911@gmail.com';                 //SMTP username
-        $mail->Password   = 'teoy swlb yrrr yzat';                  //SMTP password
+        $mail->Username   = $_ENV['MAIL_USERNAME'];                 //SMTP username
+        $mail->Password   = $_ENV['MAIL_PASSWORD'];                 //SMTP password
         //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
         //Sender
-        $mail->setFrom('pdlong1911@gmail.com', 'Bookstore');
+        $mail->setFrom($_ENV['MAIL_FROM_ADDRESS'], $_ENV['MAIL_FROM_NAME']);
 
         //Add a recipient
-        $mail->addAddress($_SESSION['email'], 'Long');   
+        $mail->addAddress($_SESSION['email'], $_ENV['MAIL_TO_NAME']);   
 
         foreach ($allProduct as $product) {
             $filePath = $path . "/" . $product->pro_file;
