@@ -7,56 +7,37 @@
            <div class="row">
            <!--Grid column-->
            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-               <h5 class="text-uppercase">Footer Content</h5>
+               <h5 class="text-uppercase">About Bookstore</h5>
 
                <p>
-               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-               molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-               voluptatem veniam, est atque cumque eum delectus sint!
+               Bookstore is your trusted online destination for thousands of book titles across genres—from fiction to personal development, education, and business. 
+               We aim to provide a seamless shopping experience and high-quality service to all book lovers.
                </p>
            </div>
            <!--Grid column-->
 
            <!--Grid column-->
-           <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-               <h5 class="text-uppercase">Links</h5>
-
-               <ul class="list-unstyled mb-0">
-               <li>
-                   <a href="#!" class="text-white">Link 1</a>
-               </li>
-               <li>
-                   <a href="#!" class="text-white">Link 2</a>
-               </li>
-               <li>
-                   <a href="#!" class="text-white">Link 3</a>
-               </li>
-               <li>
-                   <a href="#!" class="text-white">Link 4</a>
-               </li>
-               </ul>
-           </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Customer Support</h5>
+                <ul class="list-unstyled">
+                <li><a href="#!" class="text-white">How to Order</a></li>
+                <li><a href="#!" class="text-white">Return Policy</a></li>
+                <li><a href="#!" class="text-white">FAQs</a></li>
+                <li><a href="#!" class="text-white">Contact Us</a></li>
+                </ul>
+            </div>
            <!--Grid column-->
 
            <!--Grid column-->
            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-               <h5 class="text-uppercase mb-0">Links</h5>
-
-               <ul class="list-unstyled">
-               <li>
-                   <a href="#!" class="text-white">Link 1</a>
-               </li>
-               <li>
-                   <a href="#!" class="text-white">Link 2</a>
-               </li>
-               <li>
-                   <a href="#!" class="text-white">Link 3</a>
-               </li>
-               <li>
-                   <a href="#!" class="text-white">Link 4</a>
-               </li>
-               </ul>
-           </div>
+                <h5 class="text-uppercase">Categories</h5>
+                <ul class="list-unstyled">
+                <li><a href="#!" class="text-white">Programming</a></li>
+                <li><a href="#!" class="text-white">Design</a></li>
+                <li><a href="#!" class="text-white">Languages</a></li>
+                <li><a href="#!" class="text-white">Self-help</a></li>
+                </ul>
+            </div>
            <!--Grid column-->
            </div>
            <!--Grid row-->
@@ -65,8 +46,8 @@
 
        <!-- Copyright -->
        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-           © 2020 Copyright:
-           <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+           © Contact:
+           <a class="text-white" href="https://www.facebook.com/plong1911/">Long Pham</a>
        </div>
        <!-- Copyright -->
        </footer>

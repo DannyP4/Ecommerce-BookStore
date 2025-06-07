@@ -36,7 +36,7 @@
                   <table class="table" height="190" >
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
+                        <!-- <th scope="col">#</th> -->
                         <th scope="col">Image</th>
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
@@ -50,7 +50,7 @@
                       <?php if(count($allProducts) > 0) : ?>
                         <?php foreach($allProducts as $product) : ?>
                           <tr class="mb-4">
-                            <th scope="row"><?php echo $product->pro_id; ?></th>
+                            <!-- <th scope="row"><?php //echo $product->pro_id; ?></th> -->
                             <td><img width="100" height="100"
                             src="../admin-panel/products-admins/images/<?php echo $product->pro_image; ?>"
                             class="img-fluid rounded-3" alt="Cotton T-shirt">
