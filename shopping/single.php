@@ -37,6 +37,14 @@
             $select->execute();
         }
 
+        // Getting id for wishlist
+        if (isset($_SESSION['user_id'])) {
+            $select_wishlist = $conn->query("SELECT * FROM wishlist WHERE pro_id = '$id' AND user_id='$_SESSION[user_id]'");
+            $select_wishlist->execute();
+
+            $fetch = $select_wishlist->fetch(PDO::FETCH_OBJ);
+        }
+
 
         // If the product exists, fetch it
         $row = $conn->query("SELECT * FROM products WHERE id = '$id' AND status = 1");
@@ -100,6 +108,14 @@
                                             <button id="submit" name="submit" type="submit" class="btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-shopping-cart"></i> Add to cart</button> 
                                         <?php endif; ?>      
                                     <?php endif; ?>   
+
+                                    <?php if(isset($_SESSION['user_id'])) : ?>
+                                        <?php if($select_wishlist->rowCount() > 0) : ?>
+                                            <button value="<?php echo $fetch->id; ?>" class="btn-delete-wishlist btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-heart"></i> Added to wishlist</button>
+                                        <?php else : ?>    
+                                            <button class="wishlist-btn btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-heart"></i> Add to wishlist</button>
+                                        <?php endif; ?>
+                                    <?php endif; ?>  
                                 </div>
                                 </form>
                             </div>
@@ -113,28 +129,75 @@
 
 <?php require "../includes/footer.php"; ?>
 
-<script> 
-    $(document).ready(function() {
+<script>
+    $(document).ready(function(){
+        
         $(document).on("submit", function(e) {
 
-            e.preventDefault(); // Prevent the default form submission  
-            var formdata = $('#form-data').serialize() + '&submit=submit';
+            e.preventDefault();
+            var formdata = $("#form-data").serialize()+'&submit=submit';
 
             $.ajax({
                 type: "post",
                 url: "single.php?id=<?php echo $id; ?>",
                 data: formdata,
 
-                success: function(response) {
-                    alert("Product added to cart successfully!");
+                success: function() {
+                    alert("added to cart successfully");
                     $("#submit").html("<i class='fas fa-shopping-cart'></i> Added to cart").prop("disabled", true);
-                    ref(); 
+                    ref();
                 }
-            })
+            });
 
             function ref() {
-                $("body").load("single.php?id=<?php echo $id; ?>")
+                $("body").load("single.php?id=<?php echo $id; ?>");
+            }    
+        });
+
+        $(".wishlist-btn").on("click", function(e) {
+
+            e.preventDefault();
+
+            var formdata = $("#form-data").serialize()+'&submit=submit';
+
+            $.ajax({
+                type: "post",
+                url: "wishlist.php",
+                data: formdata,
+
+                success: function() {
+                    alert("added to wishlist successfully");
+                    $(".wishlist-btn").html("<i class='fas fa-heart'></i> Added to wishlist").addClass("btn-delete-wishlist")
+                    .removeClass("wishlist-btn");
+                    ref();
+                }
+            });
+        });
+    });
+
+    function ref() {
+        $("body").load("single.php?id=<?php echo $id; ?>");
+    }
+
+    $(".btn-delete-wishlist").on('click', function(e) {
+        e.preventDefault();
+
+        var id = $(this).val();
+
+        $.ajax({
+            type: "POST",
+            url: "delete-item-wishlist.php",
+            data: {
+                delete: "delete",
+                id: id
+            },
+
+            success: function() {
+                alert("product deleted successfully from wishlist");
+                $(".btn-delete-wishlist").html("<i class='fas fa-heart'></i> Add to wishlist").addClass("wishlist-btn")
+                .removeClass("btn-delete-wishlist");
+                ref();
             }
-        })
-    }); 
+        });
+    });
 </script>
